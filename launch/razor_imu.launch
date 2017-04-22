@@ -1,0 +1,8 @@
+<launch>
+
+        <node respawn="true" name="imu_rosserial" pkg="rosserial_python" type="serial_node.py"
+              args="/dev/ttyACM0 _baud:=2000000" output="screen" />
+
+        <node name="razor_imu_node" pkg="razor_imu_m0" type="razor_imu_node.py" output="screen" />
+
+</launch>
