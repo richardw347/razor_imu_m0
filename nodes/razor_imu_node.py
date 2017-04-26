@@ -6,7 +6,7 @@ from sensor_msgs.msg import Imu
 import tf
 
 imu_msg = Imu()
-imu_msg.header.frame_id = 'imu_link'
+imu_msg.header.frame_id = 'imu'
 
 imu_msg.orientation_covariance = [
     0.0025, 0, 0,
@@ -54,10 +54,10 @@ sub = rospy.Subscriber('razor_imu_raw', RazorIMURaw, raw_imu_cb)
 tf_broadcast = tf.TransformBroadcaster()
 r = rospy.Rate(100)
 while not rospy.is_shutdown():
-    tf_broadcast.sendTransform((0, 0, 0),
-                               (imu_msg.orientation.x, imu_msg.orientation.y,
-                                imu_msg.orientation.z, imu_msg.orientation.w),
-                               rospy.Time.now(),
-                               'imu_link',
-                               "world")
+    # tf_broadcast.sendTransform((0, 0, 0),
+    #                            (imu_msg.orientation.x, imu_msg.orientation.y,
+    #                             imu_msg.orientation.z, imu_msg.orientation.w),
+    #                            rospy.Time.now(),
+    #                            'imu_link',
+    #                            "world")
     r.sleep()
